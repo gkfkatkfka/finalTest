@@ -1,6 +1,7 @@
 package com.inhatc.finaltest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -32,6 +33,14 @@ public class TabActivity extends AppCompatActivity {
         for(int i=0; i<2; i++) {
             tab.getTabAt(i).setIcon(images.get(i));
         }
+
+        Intent intent = getIntent();
+        String myData = intent.getStringExtra("email");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("email", myData );
+        Fragment fragment = new Fragment();
+        fragment.setArguments(bundle);
 
     }
 }

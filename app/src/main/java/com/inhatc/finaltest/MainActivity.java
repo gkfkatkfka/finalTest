@@ -1,3 +1,9 @@
+/*
+ * 파일 이름 : MainActivity.java
+ * 파일 작성자 : 201944058 강하람
+ * 목적 : 로그인
+ * 사용 DB : sqlite
+ * */
 package com.inhatc.finaltest;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent joinIntent = new Intent(MainActivity.this, JoinActivity.class);
             startActivity(joinIntent);
         } else if (v == btnLogin) { // login 화면
+            Intent tabIntent = new Intent(MainActivity.this, TabActivity.class);
+            startActivity(tabIntent);
+            myDB.close();
+            /*
             check(email, pw);
             if(inputEmail.getError()==null&&inputPW.getError()==null){ // 공백이 없을 경우
                 int result=login(email,pw);
@@ -88,17 +98,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(tabIntent);
                     myDB.close();
                 }
-
             }
 
-
+             */
         }
-
     }
 
     private int login(String email, String pw) {
-
-
         // 1. select email from user where email = email(함수);
         // 2. 계속 불러들이면서 count하는데 만약 0 이면 아이디 없음
 
@@ -109,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (cursor.getCount() == 0) { // 아이디가 존재하지 않음
             return -1; // 아이디가 존재하지 않음
         }
-
 
         // 3. 만약 0이 아니라면 여튼 아이디는 있다는 얘끼
         // 4. 가져온 데이터의 비밀번호랑 현재 변수 비밀번호 비교
