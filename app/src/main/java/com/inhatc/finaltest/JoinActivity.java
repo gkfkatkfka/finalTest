@@ -21,8 +21,9 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onClick(View v){
-        if(v==btnJoinBefore){
+        if(v==btnJoinBefore){ // 이전 버튼을 눌렀을 때
             finish();
+            // 원래 MainActivity 즉, 로그인 화면으로 가기
         }
     }
 }

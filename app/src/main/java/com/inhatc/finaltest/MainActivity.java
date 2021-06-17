@@ -26,11 +26,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v){
         if(v==btnJoin){ // join 화면
-            Intent intent = new Intent(MainActivity.this, JoinActivity.class);
-            startActivity(intent);
+            Intent joinIntent = new Intent(MainActivity.this, JoinActivity.class);
+            startActivity(joinIntent);
         }
         else if(v==btnLogin){ // login 화면
-
+            // 우선 그냥 다음 화면으로 넘어가는 걸로 해놓음
+            Intent loginIntent=new Intent(MainActivity.this,TabActivity.class);
+            loginIntent.putExtra("id","haram");
+            startActivity(loginIntent);
         }
     }
 
