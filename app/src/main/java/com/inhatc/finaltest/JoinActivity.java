@@ -192,9 +192,9 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             // 원래 MainActivity 즉, 로그인 화면으로 가기
         }else if(v==btnResister){ // 회원가입 버튼을 눌렀을 때
-            boolean t = test(email,PW,checkPW,name); // 테스트 실행
+            boolean chk = check(email,PW,checkPW,name); // 테스트 실행
 
-            if(t){ // test 결과 참이면
+            if(chk){ // test 결과 참이면
                 // 데이터 넣어주고
                 insertValue=new ContentValues();
                 insertValue.put("email",email);
@@ -226,7 +226,7 @@ public class JoinActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // 회원가입
-    public boolean test(String email, String pw, String checkPW, String name) {
+    public boolean check(String email, String pw, String checkPW, String name) {
         // 빈칸검사
         if(email.equals("")||pw.equals("")||name.equals("")){
             return false;
