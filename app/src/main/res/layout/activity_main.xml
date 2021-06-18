@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/joinID"
+            android:id="@+id/loginID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="아이디" />
@@ -57,10 +57,11 @@
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="@+id/btnLogin"
         app:layout_constraintStart_toStartOf="@+id/btnJoin"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editPW"
+            android:id="@+id/logonPW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="비밀번호"
