@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 
@@ -62,6 +65,51 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
 
         btnUpdateBefore.setOnClickListener(this);
          btnUpdateInfo.setOnClickListener(this);
+
+
+        // 비밀번호와 비밀번호 확인
+        updateCheckPW.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                PW=updatePW.getText().toString();
+                if (!s.toString().equals(PW)) { // 이메일 형식 검사
+                    inputCheckPW.setError("비밀번호가 일치하지 않습니다");
+                }
+
+                if(s.toString().equals(PW)){
+                    inputCheckPW.setError(null);
+                    inputCheckPW.setBoxBackgroundColor(Color.argb(50,191,255,0));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        updatePW.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() <8) { // 이메일 형식 검사
+                    inputPW.setError("8글자 이상 작성해주세요");
+                } else {
+                    inputPW.setError(null);
+                }
+            }
+        });
+
     }
 
     public void onClick(View v) {
@@ -71,17 +119,21 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
         name=updateName.getText().toString().trim();
 
         if(v==btnUpdateBefore){
+            myDB.close();
             Intent tabIntent = new Intent(UpdateInfoActivity.this, TabActivity.class);
             startActivity(tabIntent);
-            myDB.close();
+
         }else if(v==btnUpdateInfo){ // 업데이트 눌렀을 때 변화
             // 체크
             boolean chk=check(name,PW,checkPW);
             if(chk){ // 제대로 테스트 마쳤을때
-
+                String updateQuery = "Update "+DBNAME+" Set password = '"+PW+"', name = '"+name+"' " +
+                        "where email = '"+email+"'";
+                myDB.execSQL(updateQuery);
+                myDB.close();
+                Intent tabIntent = new Intent(UpdateInfoActivity.this, TabActivity.class);
+                startActivity(tabIntent);
             }
-            String updateQuery = "Update "+DBNAME+" Set ";
-            myDB.close();
         }
     }
 

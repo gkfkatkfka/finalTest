@@ -80,10 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent joinIntent = new Intent(MainActivity.this, JoinActivity.class);
             startActivity(joinIntent);
         } else if (v == btnLogin) { // login 화면
-            Intent tabIntent = new Intent(MainActivity.this, TabActivity.class);
-            startActivity(tabIntent);
-            myDB.close();
-            /*
+
             check(email, pw);
             if(inputEmail.getError()==null&&inputPW.getError()==null){ // 공백이 없을 경우
                 int result=login(email,pw);
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
 
-             */
+
         }
     }
 
