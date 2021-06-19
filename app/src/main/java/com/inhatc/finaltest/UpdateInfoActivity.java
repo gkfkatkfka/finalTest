@@ -3,6 +3,7 @@ package com.inhatc.finaltest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -46,6 +48,17 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_info);
+
+        /*DB 관련*/
+        // 디비 생성
+        try {
+            myDB=this.openOrCreateDatabase(DBNAME,MODE_PRIVATE,null);
+            Toast.makeText(this,"데이터베이스 생성", Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
         btnUpdateBefore=(Button)findViewById(R.id.btnUpdateBefore);
         btnUpdateInfo=(Button)findViewById(R.id.btnUpdateInfo);
 
@@ -109,6 +122,7 @@ public class UpdateInfoActivity extends AppCompatActivity implements View.OnClic
                 }
             }
         });
+
 
     }
 
