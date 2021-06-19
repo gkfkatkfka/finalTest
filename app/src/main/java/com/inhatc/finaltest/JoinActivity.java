@@ -232,11 +232,13 @@ public boolean check(String email, String pw, String checkPW, String name) {
 if(email.equals("")||pw.equals("")||name.equals("")){
     return false;
 }
+
 // 이메일 형식 검사
 if(!email.contains("@")){
     Toast.makeText(this,"올바른 이메일 형식 입력해주세요", Toast.LENGTH_LONG).show();
     return false;
 }
+
 // 비번 일치 검사
 if(!checkPW.equals(pw)){
     return false;
